@@ -2,6 +2,7 @@ package pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class BasePage {
     protected static WebDriver driver;
@@ -90,8 +92,25 @@ por esto creamos el textFromElements
         return Find(locator).getText();
     }
 
+    public boolean elementIsDisplayed(String locator){
+        return Find(locator).isDisplayed();
+    }
+
     public void dismissAlert(){
-        driver.switchTo().alert().dismiss();
+        try { //Permite validar un error por la alerta
+            driver.switchTo().alert().dismiss();
+        }catch(NoAlertPresentException e){
+            e.printStackTrace();
+        }
+    }
+
+    //Listas
+    public boolean elementIsSelected(String locator){
+        return Find(locator).isSelected();
+    }
+
+    public List<WebElement> bringMeAllElement(String locator){
+        return driver.findElements(By.xpath(locator));
     }
 
 }

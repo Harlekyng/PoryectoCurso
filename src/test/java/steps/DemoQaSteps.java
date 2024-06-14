@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import pages.DemoQa;
 
 public class DemoQaSteps {
@@ -43,6 +44,5 @@ public class DemoQaSteps {
     @Then("the form should be submitted successfully")
     public void theFormShouldBeSubmittedSuccessfully() {
     }
-
 
 }
